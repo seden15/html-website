@@ -1,0 +1,236 @@
+        <!DOCTYPE html>
+        <html lang="tr">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Yazılım ve Bilgisayar Bölümü Projeleri</title>
+            <style>
+                body {
+                    font-family: "Times New Roman", Times, serif;
+                    margin: 0;
+                    padding: 0;
+                    display: flex;
+                    background-color: #f4f4f4;
+                }
+                .sidebar {
+                    width: 250px;
+                    background-color: #333;
+                    height: 100vh;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    display: flex;
+                    flex-direction: column;
+                    padding: 10px;
+                    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+                }
+                .sidebar a {
+                    color: white;
+                    padding: 15px;
+                    text-decoration: none;
+                    font-size: 18px;
+                    border-bottom: 1px solid #444;
+                    transition: background-color 0.3s, transform 0.3s;
+                }
+                .sidebar a:hover {
+                    background-color: #575757;
+                    transform: translateX(5px);
+                }
+                .sidebar a#logout {
+                    margin-top: auto;
+                }
+                .content {
+                    margin-left: 250px;
+                    padding: 20px;
+                    width: calc(100% - 250px);
+                    min-height: 100vh;
+                    background-color: #ffffff;
+                    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+                    transition: margin-left 0.3s, width 0.3s;
+                }
+                .content h2 {
+                    font-size: 24px;
+                    color: #444;
+                    margin-top: 30px;
+                    margin-bottom: 15px;
+                }
+                .project-list {
+                    list-style-type: none;
+                    padding: 0;
+                }
+                .project-list li {
+                    background-color: #f9f9f9;
+                    padding: 15px;
+                    margin-bottom: 10px;
+                    border: 1px solid #ddd;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s;
+                }
+                .project-list li:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                }
+                /* Modal Styles */
+                .modal {
+                    display: none;
+                    position: fixed;
+                    z-index: 1;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    overflow: auto;
+                    background-color: rgba(0,0,0,0.4);
+                    justify-content: center;
+                    align-items: center;
+                }
+                .modal-content {
+                    background-color: #fefefe;
+                    margin: 5% auto;
+                    padding: 20px;
+                    border: 1px solid #888;
+                    width: 80%;
+                    max-width: 600px;
+                    border-radius: 10px;
+                }
+                .close {
+                    color: #aaa;
+                    float: right;
+                    font-size: 28px;
+                    font-weight: bold;
+                }
+                .close:hover,
+                .close:focus {
+                    color: black;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+                .form-group {
+                    margin-bottom: 15px;
+                }
+                .form-group label {
+                    display: block;
+                    margin-bottom: 5px;
+                }
+                .form-group input {
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                }
+                .form-group button {
+                    padding: 10px;
+                    color: white;
+                    background-color: #28a745;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+                .form-group button:hover {
+                    background-color: #218838;
+                }
+            </style>
+        </head>
+        <body>
+
+        <div class="sidebar">
+            <a href="sidebar.html">Personeller</a>
+            <a href="hizmetler.html">Hizmetler</a>
+            <a href="rapor.html">Gün Sonu Raporu</a>
+            <a href="maas.html">Maaş</a>
+            <a href="index.html" id="logout">Çıkış</a>
+        </div>
+
+        <div class="content" id="services">
+            <h2>Yazılım ve Bilgisayar Bölümü Projeleri</h2>
+
+            <!-- Buton -->
+            <button id="open-modal" style="padding: 10px 15px; border: none; background-color: #007bff; color: white; cursor: pointer; border-radius: 5px; margin-bottom: 20px;">Yeni Proje Ekle</button>
+
+            <ul class="project-list" id="project-list">
+                <li>
+                    <strong>Proje Adı:</strong> E-Ticaret Web Uygulaması<br>
+                    <strong>Geliştirici:</strong> Ali Vural<br>
+                    <strong>Açıklama:</strong> Bu proje, online ürün satışı için geliştirilmiş bir e-ticaret platformudur. Sistem, kullanıcı yönetimi, ürün kataloğu, sepet yönetimi ve ödeme işlemleri gibi temel özellikleri içerir.
+                </li>
+                <li>
+                    <strong>Proje Adı:</strong> CRM (Müşteri İlişkileri Yönetimi) Sistemi<br>
+                    <strong>Geliştirici:</strong> Ebru Yılmaz<br>
+                    <strong>Açıklama:</strong> Müşteri ilişkilerini yönetmek için tasarlanmış bir CRM sistemidir. Proje, müşteri takip, satış süreçleri ve iletişim yönetimi gibi modülleri içerir.
+                </li>
+                <li>
+                    <strong>Proje Adı:</strong> Personel Takip Uygulaması<br>
+                    <strong>Geliştirici:</strong> Mehmet Kaya<br>
+                    <strong>Açıklama:</strong> Şirket içi personelin çalışma saatlerini, izin durumlarını ve performanslarını takip etmek için kullanılan bir web uygulamasıdır.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Modal -->
+        <div id="project-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Yeni Proje Ekle</h2>
+                <form id="add-project-form">
+                    <div class="form-group">
+                        <label for="project-name">Proje Adı:</label>
+                        <input type="text" id="project-name" name="project-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="developer">Geliştirici:</label>
+                        <input type="text" id="developer" name="developer" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Açıklama:</label>
+                        <input type="text" id="description" name="description" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Ekle</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Modal
+                var modal = document.getElementById("project-modal");
+                var btn = document.getElementById("open-modal");
+                var span = document.getElementsByClassName("close")[0];
+
+                btn.onclick = function () {
+                    modal.style.display = "flex";
+                }
+
+                span.onclick = function () {
+                    modal.style.display = "none";
+                }
+
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+
+                // Form işleme
+                var form = document.getElementById("add-project-form");
+                form.onsubmit = function (event) {
+                    event.preventDefault();
+                    var projectName = document.getElementById("project-name").value;
+                    var developer = document.getElementById("developer").value;
+                    var description = document.getElementById("description").value;
+                    var projectList = document.getElementById("project-list");
+                    var newProject = document.createElement("li");
+                    newProject.innerHTML = "<strong>Proje Adı:</strong> " + projectName + "<br>" +
+                        "<strong>Geliştirici:</strong> " + developer + "<br>" +
+                        "<strong>Açıklama:</strong> " + description;
+                    projectList.appendChild(newProject);
+                    modal.style.display = "none";
+                    form.reset();
+                }
+            });
+        </script>
+
+        </body>
+        </html>
+

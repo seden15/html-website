@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personel Takip Sistemi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #34495e;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+        }
+        .sidebar a {
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            border-bottom: 1px solid #2c3e50;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #2c3e50;
+            transform: translateX(10px);
+        }
+        .sidebar a#logout {
+            margin-top: auto;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px);
+            min-height: 100vh;
+            background-color: #ecf0f1;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+        .content h1 {
+            font-size: 32px;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .content p {
+            font-size: 18px;
+            color: #34495e;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .employee-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        .employee-table th, .employee-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+            transition: background-color 0.3s;
+        }
+        .employee-table th {
+            background-color: #34495e;
+            color: white;
+            font-weight: bold;
+        }
+        .employee-table td {
+            background-color: #ffffff;
+        }
+        .employee-table tr:hover td {
+            background-color: #f1f1f1;
+        }
+        .add-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 12px;
+            font-size: 18px;
+            color: white;
+            background-color: #27ae60;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .add-button:hover {
+            background-color: #2ecc71;
+            transform: translateY(-2px);
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #ffffff;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s ease;
+        }
+        .close {
+            color: #888;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #333;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-group input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+        .form-group button {
+            padding: 10px;
+            color: white;
+            background-color: #27ae60;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .form-group button:hover {
+            background-color: #2ecc71;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <a href="sidebar.html">Personeller</a>
+    <a href="hizmetler.html">Hizmetler</a>
+    <a href="rapor.html">Gün Sonu Raporu</a>
+    <a href="maas.html">Maaş</a>
+    <a href="index.html" id="logout">Çıkış</a>
+</div>
+
+<div class="content">
+    <h1>Personel Takip Sistemi</h1>
+    <p>Personel Takip Sistemi, şirket içindeki çalışanların bilgilerinin, izin durumlarının ve çalışma saatlerinin takip edildiği bir sistemdir.</p>
+
+    <!-- Personel Tablosu -->
+    <table class="employee-table">
+        <thead>
+        <tr>
+            <th>Adı</th>
+            <th>Pozisyonu</th>
+            <th>Bölümü</th>
+            <th>İzin Durumu</th>
+            <th>Çalışma Saatleri</th>
+        </tr>
+        </thead>
+        <tbody id="employee-list">
+        <tr>
+            <td>Ahmet Yılmaz</td>
+            <td>Yazılım Geliştirici</td>
+            <td>IT</td>
+            <td>Yıllık İzin</td>
+            <td>09:00 - 18:00</td>
+        </tr>
+        <tr>
+            <td>Aylin Demir</td>
+            <td>Proje Yöneticisi</td>
+            <td>IT</td>
+            <td>Aktif</td>
+            <td>09:00 - 18:00</td>
+        </tr>
+        <tr>
+            <td>Mehmet Kaya</td>
+            <td>İnsan Kaynakları</td>
+            <td>HR</td>
+            <td>Hasta İzni</td>
+            <td>08:00 - 17:00</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Yeni Personel Ekleme Butonu -->
+    <button class="add-button" id="open-modal">Yeni Personel Ekle</button>
+</div>
+
+<!-- Modal -->
+<div id="personnel-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Yeni Personel Ekle</h2>
+        <form id="add-personnel-form">
+            <div class="form-group">
+                <label for="name">Adı:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="position">Pozisyonu:</label>
+                <input type="text" id="position" name="position" required>
+            </div>
+            <div class="form-group">
+                <label for="department">Bölümü:</label>
+                <input type="text" id="department" name="department" required>
+            </div>
+            <div class="form-group">
+                <label for="leave-status">İzin Durumu:</label>
+                <input type="text" id="leave-status" name="leave-status" required>
+            </div>
+            <div class="form-group">
+                <label for="work-hours">Çalışma Saatleri:</label>
+                <input type="text" id="work-hours" name="work-hours" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Ekle</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Modal açma ve kapama işlemleri
+    var modal = document.getElementById('personnel-modal');
+    var btn = document.getElementById('open-modal');
+    var span = document.getElementsByClassName('close')[0];
+
+    btn.onclick = function() {
+        modal.style.display = 'block';
+    }
+
+    span.onclick = function() {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    // Form gönderme işlemi
+    document.getElementById('add-personnel-form').onsubmit = function(event) {
+        event.preventDefault();
+
+        var name = document.getElementById('name').value;
+        var position = document.getElementById('position').value;
+        var department = document.getElementById('department').value;
+        var leaveStatus = document.getElementById('leave-status').value;
+        var workHours = document.getElementById('work-hours').value;
+
+        var table = document.getElementById('employee-list');
+        var row = table.insertRow();
+        row.insertCell(0).innerHTML = name;
+        row.insertCell(1).innerHTML = position;
+        row.insertCell(2).innerHTML = department;
+        row.insertCell(3).innerHTML = leaveStatus;
+        row.insertCell(4).innerHTML = workHours;
+
+        modal.style.display = 'none';
+        document.getElementById('add-personnel-form').reset();
+    }
+</script>
+
+</body>
+</html>
+
+
+<script>
+    // Modal elementleri
+    var modal = document.getElementById("personnel-modal");
+    var btn = document.getElementById("open-modal");
+    var span = document.getElementsByClassName("close")[0];
+    var form = document.getElementById("add-personnel-form");
+    var employeeList = document.getElementById("employee-list");
+
+    // Modal'ı aç
+    btn.onclick = function() {
+        modal.style.display = "flex";
+    }
+
+    // Modal'ı kapat
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Modal'ı kapatmak için tıklama dışında bir yere tıklanırsa
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Formu gönderme
+    form.onsubmit = function(event) {
+        event.preventDefault();
+
+        // Formdan verileri al
+        var name = document.getElementById("name").value;
+        var position = document.getElementById("position").value;
+        var department = document.getElementById("department").value;
+        var status = document.getElementById("status").value;
+        var hours = document.getElementById("hours").value;
+
+        // Yeni satırı oluştur
+        var newRow = document.createElement("tr");
+        newRow.innerHTML = `<td>${name}</td><td>${position}</td><td>${department}</td><td>${status}</td><td>${hours}</td>`;
+        employeeList.appendChild(newRow);
+
+        // Formu sıfırla ve modal'ı kapat
+        form.reset();
+        modal.style.display = "none";
+    }
+</script>
+
+</body>
+</html>
+

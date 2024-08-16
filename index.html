@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <style>
+        /* Custom styles */
+        body {
+            font-family: "Times New Roman", serif;
+        }
+
+        .carousel-inner img {
+            height: 500px; /* Adjust height as needed */
+            object-fit: cover;
+        }
+
+        .header {
+            background-color: #f8f9fa;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 3rem;
+            color: #343a40;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .team-member img {
+            border-radius: 50%;
+            height: 150px;
+            width: 150px;
+            object-fit: cover;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #007bff;
+        }
+
+        .footer a:hover {
+            color: #0056b3;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Hoşgeldiniz!</h1>
+        <p>Web sitemizde dolaşın ve içeriklerimizi keşfedin.</p>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Anasayfa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="admin2.html">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="izin.html">İzin</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Carousel -->
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="prs.img/ai.png" class="d-block w-100" alt="Slide 1">
+        </div>
+        <div class="carousel-   item">
+            <img src="prs.img/ai2.webp" class="d-block w-100" alt="Slide 2">
+        </div>
+        <div class="carousel-item">
+            <img src="prs.img/logo.jpg" class="d-block w-100" alt="Slide 3">
+        </div>
+    </div>
+</div>
+
+<!-- Featured Content Section -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="prs.img/robis1.jpg" class="card-img-top" alt="Feature 1">
+                <div class="card-body">
+                    <h5 class="card-title">Akıllı Performans Analitiği</h5>
+                    <p class="card-text">Çalışanların performansını sadece mevcut kriterlerle değil, aynı zamanda geçmiş eğilimler ve benzer çalışanlarla karşılaştırmalı olarak analiz eden yapay zeka destekli bir analiz motoru. Bu sistem, performans verilerini analiz ederken çalışanların yetenekleri ve gelişim alanlarına dair öngörülerde bulunur, böylece kişiselleştirilmiş gelişim planları önerir.</p>
+                    <a href="#" class="btn btn-primary">Daha Fazla Bilgi</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="prs.img/robis4.jpg" class="card-img-top" alt="Feature 2">
+                <div class="card-body">
+                    <h5 class="card-title">Dinamik Zaman Yönetimi</h5>
+                    <p class="card-text">Çalışanların iş ve kişisel hayatlarını daha verimli yönetmelerine yardımcı olmak için dinamik zaman yönetimi aracı. Bu özellik, çalışanların iş saatlerini, projeleri ve kişisel etkinliklerini entegre bir takvimde gösterir ve otomatik olarak zaman blokları önerir. Ayrıca, çalışanların iş yükünü dengelemelerine yardımcı olmak için gerçek zamanlı tavsiyeler sunar.</p>
+                    <a href="#" class="btn btn-primary">Daha Fazla Bilgi</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="prs.img/robis2.jfif" class="card-img-top" alt="Feature 3">
+                <div class="card-body">
+                    <h5 class="card-title">Öngörücü İzin Yönetimi</h5>
+                    <p class="card-text">Çalışanların izin ve tatil taleplerini öngörmek için makine öğrenimi algoritmalarını kullanan bir özellik. Sistem, geçmiş izin verilerini ve iş yükü trendlerini analiz ederek hangi dönemlerde izin taleplerinin artabileceğini tahmin eder ve yöneticilere proaktif planlama önerileri sunar. Bu, izin süreçlerini daha verimli hale getirir ve iş gücü planlamasını optimize eder.</p>
+                    <a href="#" class="btn btn-primary">Daha Fazla Bilgi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Team Section -->
+<div class="container mt-5">
+    <h2>Ekibimiz</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="text-center team-member">
+                <img src="prs.img/kadin1.jpg" alt="Team Member 1">
+                <h5 class="mt-3">Ayşe Yılmaz </h5>
+                <p>İnsan Kaynakları Müdürü</p>
+                <p>Stratejik işe alım ve performans yönetiminde 10 yıllık deneyime sahip, mükemmel iletişim becerileri ve empati yeteneği ile çalışan memnuniyetini artırır.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="text-center team-member">
+                <img src="prs.img/florian.jpg" alt="Team Member 2">
+                <h5 class="mt-3">Mehmet Demir </h5>
+                <p>Yazılım Geliştirici</p>
+                <p>5 yıllık yazılım geliştirme deneyimi, yaratıcı problem çözme yeteneği ve yeni teknolojilere hızlı adaptasyon kabiliyeti ile projeleri etkili bir şekilde yönetir.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="text-center team-member">
+                <img src="prs.img/kadin2.jpg" alt="Team Member 3">
+                <h5 class="mt-3">Elif Özkan </h5>
+                <p>Pazarlama Uzmanı</p>
+                <p>7 yıllık pazarlama deneyimi, yaratıcı ve stratejik düşünme becerisi ile etkili kampanyalar tasarlar ve yürütür.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Testimonials Section -->
+<div class="container mt-5">
+    <h2>Müşteri Yorumları</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <p class="card-text">"Bu hizmet harika! Her şey tam zamanında ve mükemmel bir şekilde yapıldı."</p>
+                    <h5 class="card-title">Müşteri 1</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <p class="card-text">"Güvenilir ve profesyonel bir ekip. Kesinlikle tavsiye ederim."</p>
+                    <h5 class="card-title">Müşteri 2</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <p class="card-text">"Hizmet kalitesi gerçekten mükemmel. Harika bir deneyim yaşadım."</p>
+                    <h5 class="card-title">Müşteri 3</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Form Section -->
+<div class="container mt-5">
+    <h2>İletişim</h2>
+    <form id="contactForm">
+        <div class="form-group">
+            <label for="name">Adınız</label>
+            <input type="text" class="form-control" id="name" placeholder="Adınızı girin" required>
+        </div>
+        <div class="form-group">
+            <label for="email">E-posta adresiniz</label>
+            <input type="email" class="form-control" id="email" placeholder="E-posta adresinizi girin" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Mesajınız</label>
+            <textarea class="form-control" id="message" rows="3" placeholder="Mesajınızı yazın" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Gönder</button>
+    </form>
+</div>
+
+<!-- Footer -->
+<footer class="footer mt-5">
+    <div class="container">
+        <p>© 2024 Şirket Adı. Tüm hakları saklıdır.</p>
+        <p>
+            <a href="#">Gizlilik Politikası</a> |
+            <a href="#">Kullanım Şartları</a> |
+            <a href="#">İletişim</a>
+        </p>
+        <p>
+            <a href="https://facebook.com" target="_blank">Facebook</a> |
+            <a href="https://twitter.com" target="_blank">Twitter</a> |
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+        </p>
+    </div>
+</footer>
+
+<!-- Bootstrap and jQuery JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK3N5n1p5P3ftwFfh2HfPt5w0k5/T5wQJcQZ/4zqfL8O6xg" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UOa7YgOp8GfQZTRJYzS5n2tIphwRfpN9/yTUE9IhLX41kFZ2KFTd8/XF2NdYXh5M4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-dQ3N7RIpLlv+VZkc/nF74wUtWyN0N7+GErAqV4t1pF54P3YylX5OgB1v69F5MeP3" crossorigin="anonymous"></script>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var password = document.getElementById('password').value;
+        var correctPassword = '123'; // Şifreyi buraya girin
+        if (password === correctPassword) {
+            document.getElementById('loginMessage').textContent = 'Giriş başarılı!';
+            document.getElementById('loginMessage').style.color = 'green';
+            // Admin sayfasına yönlendirme veya admin ile ilgili işlemler burada yapılabilir
+        } else {
+            document.getElementById('loginMessage').textContent = 'Şifre yanlış, lütfen tekrar deneyin.';
+            document.getElementById('loginMessage').style.color = 'red';
+        }
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert('Form başarıyla gönderildi!');
+        // Burada form verilerini işlemek için AJAX veya başka bir yöntem kullanılabilir
+    });
+</script>
+</body>
+</html>
+

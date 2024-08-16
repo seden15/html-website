@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İzin Talepleri Yönetimi</title>
+    <!-- Bootstrap CSS ekleme -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .form-group input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        table {
+            margin-top: 30px;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .btn {
+            padding: 5px 10px;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .btn-approve {
+            background-color: #28a745;
+        }
+        .btn-reject {
+            background-color: #dc3545;
+        }
+        .btn-update {
+            background-color: #ffc107;
+        }
+        .btn-approve:hover {
+            background-color: #218838;
+        }
+        .btn-reject:hover {
+            background-color: #c82333;
+        }
+        .btn-update:hover {
+            background-color: #e0a800;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>İzin Talepleri Yönetimi</h1>
+
+    <!-- İzin Talebi Formu -->
+    <form id="izin-talebi-form">
+        <div class="form-group">
+            <label for="personel-adi">Personel Adı:</label>
+            <input type="text" id="personel-adi" name="personel-adi" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="izin-turu">İzin Türü:</label>
+            <select id="izin-turu" name="izin-turu" class="form-control" required>
+                <option value="">Seçiniz...</option>
+                <option value="yıllık">Yıllık İzin</option>
+                <option value="hasta">Hasta İzni</option>
+                <option value="mazeret">Mazeret İzni</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="baslangic-tarihi">Başlangıç Tarihi:</label>
+            <input type="date" id="baslangic-tarihi" name="baslangic-tarihi" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="bitis-tarihi">Bitiş Tarihi:</label>
+            <input type="date" id="bitis-tarihi" name="bitis-tarihi" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="İzin Talebi Gönder" class="btn btn-primary btn-block">
+        </div>
+    </form>
+
+    <!-- İzin Talepleri Tablosu -->
+    <table id="izin-talepleri-tablosu" class="table table-striped">
+        <thead>
+        <tr>
+            <th>Personel Adı</th>
+            <th>İzin Türü</th>
+            <th>Başlangıç Tarihi</th>
+            <th>Bitiş Tarihi</th>
+            <th>Durum</th>
+            <th>İşlemler</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- İzin talepleri burada listelenecek -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Bootstrap JS ve jQuery dahil etme -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    document.getElementById('izin-talebi-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const personelAdi = document.getElementById('personel-adi').value;
+        const izinTuru = document.getElementById('izin-turu').value;
+        const baslangicTarihi = document.getElementById('baslangic-tarihi').value;
+        const bitisTarihi = document.getElementById('bitis-tarihi').value;
+
+        const tableBody = document.querySelector('#izin-talepleri-tablosu tbody');
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+                <td>${personelAdi}</td>
+                <td>${izinTuru}</td>
+                <td>${baslangicTarihi}</td>
+                <td>${bitisTarihi}</td>
+                <td>Beklemede</td>
+                <td class="action-buttons">
+                    <button class="btn btn-approve" onclick="approveRequest(this)">Onayla</button>
+                    <button class="btn btn-reject" onclick="rejectRequest(this)">Reddet</button>
+                    <button class="btn btn-update" onclick="updateRequest(this)">Güncelle</button>
+                </td>
+            `;
+        tableBody.appendChild(row);
+
+        document.getElementById('izin-talebi-form').reset();
+    });
+
+    function approveRequest(button) {
+        const row = button.closest('tr');
+        row.cells[4].innerText = 'Onaylandı';
+        row.querySelectorAll('.btn').forEach(btn => btn.disabled = true);
+    }
+
+    function rejectRequest(button) {
+        const row = button.closest('tr');
+        row.cells[4].innerText = 'Reddedildi';
+        row.querySelectorAll('.btn').forEach(btn => btn.disabled = true);
+    }
+
+    function updateRequest(button) {
+        const row = button.closest('tr');
+        const personelAdi = row.cells[0].innerText;
+        const izinTuru = row.cells[1].innerText;
+        const baslangicTarihi = row.cells[2].innerText;
+        const bitisTarihi = row.cells[3].innerText;
+
+        document.getElementById('personel-adi').value = personelAdi;
+        document.getElementById('izin-turu').value = izinTuru;
+        document.getElementById('baslangic-tarihi').value = baslangicTarihi;
+        document.getElementById('bitis-tarihi').value = bitisTarihi;
+
+        row.remove();
+    }
+</script>
+</body>
+</html>
