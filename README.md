@@ -19,5 +19,5 @@ Bu proje, bir personel takip sistemi oluşturmaya yönelik bir çalışmadır. S
 
 ## İletişim
 
-- **Yazar**: Ayser Seden GÜRBÜZ
+- **Tasarlayan**: Ayser Seden GÜRBÜZ
 - **E-posta**: sedengurbuz73@gmail.com
