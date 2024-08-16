@@ -14,7 +14,7 @@
         }
         .sidebar {
             width: 250px;
-            background-color: #34495e;
+            background-color: #333;
             height: 100vh;
             position: fixed;
             top: 0;
@@ -271,53 +271,6 @@
 </div>
 
 <script>
-    // Modal açma ve kapama işlemleri
-    var modal = document.getElementById('personnel-modal');
-    var btn = document.getElementById('open-modal');
-    var span = document.getElementsByClassName('close')[0];
-
-    btn.onclick = function() {
-        modal.style.display = 'block';
-    }
-
-    span.onclick = function() {
-        modal.style.display = 'none';
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-        }
-    }
-
-    // Form gönderme işlemi
-    document.getElementById('add-personnel-form').onsubmit = function(event) {
-        event.preventDefault();
-
-        var name = document.getElementById('name').value;
-        var position = document.getElementById('position').value;
-        var department = document.getElementById('department').value;
-        var leaveStatus = document.getElementById('leave-status').value;
-        var workHours = document.getElementById('work-hours').value;
-
-        var table = document.getElementById('employee-list');
-        var row = table.insertRow();
-        row.insertCell(0).innerHTML = name;
-        row.insertCell(1).innerHTML = position;
-        row.insertCell(2).innerHTML = department;
-        row.insertCell(3).innerHTML = leaveStatus;
-        row.insertCell(4).innerHTML = workHours;
-
-        modal.style.display = 'none';
-        document.getElementById('add-personnel-form').reset();
-    }
-</script>
-
-</body>
-</html>
-
-
-<script>
     // Modal elementleri
     var modal = document.getElementById("personnel-modal");
     var btn = document.getElementById("open-modal");
@@ -337,7 +290,7 @@
 
     // Modal'ı kapatmak için tıklama dışında bir yere tıklanırsa
     window.onclick = function(event) {
-        if (event.target == modal) {
+        if (event.target === modal) {
             modal.style.display = "none";
         }
     }
@@ -350,12 +303,12 @@
         var name = document.getElementById("name").value;
         var position = document.getElementById("position").value;
         var department = document.getElementById("department").value;
-        var status = document.getElementById("status").value;
-        var hours = document.getElementById("hours").value;
+        var leaveStatus = document.getElementById("leave-status").value;
+        var workHours = document.getElementById("work-hours").value;
 
         // Yeni satırı oluştur
         var newRow = document.createElement("tr");
-        newRow.innerHTML = `<td>${name}</td><td>${position}</td><td>${department}</td><td>${status}</td><td>${hours}</td>`;
+        newRow.innerHTML = `<td>${name}</td><td>${position}</td><td>${department}</td><td>${leaveStatus}</td><td>${workHours}</td>`;
         employeeList.appendChild(newRow);
 
         // Formu sıfırla ve modal'ı kapat
@@ -366,4 +319,3 @@
 
 </body>
 </html>
-
